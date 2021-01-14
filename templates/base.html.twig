@@ -1,12 +1,25 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
-</html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		<link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet"> {% block stylesheets %}{% endblock %}
+		</head>
+		<body>
+			{{ include('nav.html.twig') }}
+
+			{% for message in app.flashes('success') %}
+				<div class="alert alert-success">
+					{{ message | raw }}
+				</div>
+			{% endfor %}
+
+			{% block body %}{% endblock %}
+			{% block javascripts %}{% endblock %}
+			<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+			<script src="{{ asset("assets/js/bootstrap.bundle.js") }} "></script>
+		</body>
+	</html>

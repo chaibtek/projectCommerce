@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<a class="navbar-brand" href="#">Logo</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item active">
+				<a class="nav-link" href="/">Home
+				</a>
+			</li>
+
+			{% if is_granted('ROLE_STAFF') %}
+				<li class="nav-item">
+					<a class="nav-link" href="">Liste catégories</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="">Ajout Produit</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="">Ajout Catégorie
+					</a>
+				</li>
+			{% endif %}
+		</ul>
+
+		{% if app.user %}
+			<div class="d-flex">
+
+				<a href="{{ path('app_logout') }}">
+					<p class="btn btn-outline-success">Se deconnecter
+																																																																																																																																																												         de
+						{{ app.user.email }}
+					</p>
+				</a>
+
+			</div>
+		{% endif %}
+
+		{% if app.user is null %}
+			<a href="{{ path('app_login') }}">
+				<p class="btn btn-outline-success">Connexion
+				</p>
+			</a>
+		{% endif %}
+
+
+	</div>
+</nav>
